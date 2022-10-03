@@ -12,7 +12,6 @@ namespace CompupharmLtd.Service
         {
             if (cred.UserName != null)
             {
-
             }
             throw new NotImplementedException();
         }
