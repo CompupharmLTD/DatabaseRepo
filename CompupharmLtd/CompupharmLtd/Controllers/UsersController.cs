@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.Description;
 using CompupharmLtd.Model;
 using CompupharmLtd.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -30,9 +31,12 @@ namespace CompupharmLtd.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
+        [ResponseType(typeof(LoginStatus))]
+
         public LoginStatus Login( [FromBody] LoginUser cred)
         {
-            return  UserService.Login(cred);
+            LoginStatus response =   UserService.Login(cred);
+            return response;
 
 
         }

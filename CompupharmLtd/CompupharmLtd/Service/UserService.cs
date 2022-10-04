@@ -1,19 +1,42 @@
-﻿using CompupharmLtd.Model;
+﻿using CompupharmLtd.Data;
+using CompupharmLtd.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CompupharmLtd.Service
 {
     public class UserService
     {
-        internal static LoginStatus Login(LoginUser cred)
+        public static LoginStatus Login(LoginUser cred)
         {
+            var status = new LoginStatus();
             if (cred.UserName != null)
             {
+                LoginUser result = UserData.LoginData(cred.UserName);
+                if (result.UserName == null)
+                {
+                    status.statusCode = 02;
+                    status.status = "User Account Doesnt exist";
+                }
+                else {
+                   // Regex.Replace(result.UserName, @"\s+", "");
+                    if (result.UserName.Trim() == cred.UserName)
+                    {
+                        status.statusCode = 00;
+                        status.status = "Successfull";
+
+                    }
+                    else {
+                        status.statusCode = 01;
+                        status.status = "Invalid Username and Password Match";
+                    }
+
+                }
             }
-            throw new NotImplementedException();
+            return status;
         }
     }
 }
