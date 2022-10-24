@@ -11,6 +11,7 @@ namespace CompupharmLtd.Model
         public string CompanyName { get; set; }
         public string CompanyAddress { get; set; }
         public string CompanyPhone { get; set; }
+        public string Email { get; set; }
         public Byte CompanyCertificate { get; set; }
     }
 
@@ -22,4 +23,10 @@ namespace CompupharmLtd.Model
         public string Password { get; set; }
         public DateTime LastLogin { get; set; }
     }
-}
+    public class CreateUserResponse
+    {
+        public string Status { get; set; }
+        public int StatusCode { get; set; }
+        public User Customer { get; set; }
+    }
+    }

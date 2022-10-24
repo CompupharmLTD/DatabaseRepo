@@ -15,22 +15,23 @@ namespace CompupharmLtd.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        // GET: api/<UsersController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //// GET: api/<UsersController>
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
-        // GET api/<UsersController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET api/<UsersController>/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST api/<UsersController>
         [HttpPost]
+        [Route("Login")]
         [ResponseType(typeof(LoginStatus))]
 
         public LoginStatus Login( [FromBody] LoginUser cred)
@@ -40,17 +41,28 @@ namespace CompupharmLtd.Controllers
 
 
         }
+        [HttpPost]
+        [Route("Create")]
+        [ResponseType(typeof(LoginStatus))]
 
-        // PUT api/<UsersController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public CreateUserResponse Create([FromBody] User customer)
         {
+            CreateUserResponse response = UserService.Create(customer);
+            return response;
+
+
         }
 
-        // DELETE api/<UsersController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// PUT api/<UsersController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
+
+        //// DELETE api/<UsersController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
