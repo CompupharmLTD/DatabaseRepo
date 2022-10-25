@@ -7,10 +7,10 @@ namespace CompupharmLtd.Model
 {
     public class Product
     {
-        public string ProductNAme { get; set; }
-        public string ProductID { get; set; }
+        public string ProductName { get; set; }
+        public int ProductID { get; set; }
         public string ProductSummary { get; set; }
-        public string Productrestriction { get; set; }
+        public string ProductRestriction { get; set; }
         public string ProductImage { get; set; }
     }
 }
