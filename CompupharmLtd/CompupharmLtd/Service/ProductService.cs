@@ -11,7 +11,22 @@ namespace CompupharmLtd.Service
     {
         internal static ProductResponse GetProductByID(int id)
         {
-            throw new NotImplementedException();
+            ProductResponse productResponse = new ProductResponse();
+            Product product = new Product();
+            product = ProductData.GetProduct(id);
+            if (product != null)
+            {
+                productResponse.statusCode = 00;
+                productResponse.status = "Successful";
+                productResponse.product = product;
+            }
+            else
+            {
+                productResponse.statusCode = 01;
+                productResponse.status = "UnSuccessful";
+                productResponse.product = null;
+            }
+            return productResponse;
         }
 
         internal static ProductListResponse GetAllProduct(string status)
@@ -38,17 +53,71 @@ namespace CompupharmLtd.Service
 
         internal static ProductResponse DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            ProductResponse productResponse = new ProductResponse();
+
+            string result = string.Empty;
+            result = ProductData.DeleteProduct(id);
+            if (result =="00")
+            {
+                productResponse.statusCode = 00;
+                productResponse.status = "Successful";
+                productResponse.product = null;
+            }
+            else
+            {
+                productResponse.statusCode = 01;
+                productResponse.status = "UnSuccessful";
+                productResponse.product = null;
+            }
+
+            return productResponse;
         }
 
-        internal static ProductResponse EditProduct(Product id)
+        internal static ProductResponse EditProduct(Product value )
         {
-            throw new NotImplementedException();
-        }
+            ProductResponse productResponse = new ProductResponse();
+            string result = string.Empty;
+            Product product = new Product();
+            product = ProductData.GetProduct(value.ProductID);
+                //ProductData.EditProduct(id);
+            if (product != null)
+            {
+                result =ProductData.EditProduct(value);
 
-        internal static ProductResponse CreateProduct(Product id)
+                productResponse.statusCode = 00;
+                productResponse.status = "Successful";
+                productResponse.product = product;
+            }
+            else
+            {
+                productResponse.statusCode = 01;
+                productResponse.status = "UnSuccessful, not found";
+                productResponse.product = null;
+            }
+
+            return productResponse;
+        }
+        internal static ProductResponse CreateProduct(Product value)
         {
-            throw new NotImplementedException();
+            ProductResponse productResponse = new ProductResponse();
+
+            string result = string.Empty;
+            result = ProductData.CreateProduct(value);
+            if (result =="00")
+            {
+                productResponse.statusCode = 00;
+                productResponse.status = "Successful";
+                productResponse.product = value;
+            }
+            else
+            {
+                productResponse.statusCode = 01;
+                productResponse.status = "UnSuccessful";
+                productResponse.product = null;
+            }
+
+            return productResponse; 
         }
     }
 }
+        

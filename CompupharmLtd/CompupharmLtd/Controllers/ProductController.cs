@@ -45,11 +45,11 @@ namespace CompupharmLtd.Controllers
         [Route("CreateProduct")]
         [ResponseType(typeof(ProductResponse))]
 
-        public ProductResponse Post([FromBody] Product value)
+        public ProductResponse Post(Product product)
         {
-            ProductResponse product;
-            product = ProductService.CreateProduct(value);
-            return product;
+            ProductResponse products;
+            products = ProductService.CreateProduct(product);
+            return products;
         }
 
         // PUT api/<ProductController>/5
